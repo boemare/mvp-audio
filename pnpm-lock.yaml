@@ -281,6 +281,9 @@ importers:
       '@hypr/plugin-detect':
         specifier: workspace:*
         version: link:../../plugins/detect
+      '@hypr/plugin-dictation':
+        specifier: workspace:*
+        version: link:../../plugins/dictation
       '@hypr/plugin-extensions':
         specifier: workspace:*
         version: link:../../plugins/extensions
@@ -293,6 +296,9 @@ importers:
       '@hypr/plugin-hooks':
         specifier: workspace:*
         version: link:../../plugins/hooks
+      '@hypr/plugin-hotkeys':
+        specifier: workspace:*
+        version: link:../../plugins/hotkeys
       '@hypr/plugin-icon':
         specifier: workspace:*
         version: link:../../plugins/icon
@@ -329,6 +335,9 @@ importers:
       '@hypr/plugin-overlay':
         specifier: workspace:*
         version: link:../../plugins/overlay
+      '@hypr/plugin-paste':
+        specifier: workspace:*
+        version: link:../../plugins/paste
       '@hypr/plugin-path2':
         specifier: workspace:*
         version: link:../../plugins/path2
@@ -1541,6 +1550,12 @@ importers:
         specifier: ^2.9.1
         version: 2.9.1
 
+  plugins/dictation:
+    dependencies:
+      '@tauri-apps/api':
+        specifier: ^2.9.1
+        version: 2.9.1
+
   plugins/extensions:
     dependencies:
       '@tauri-apps/api':
@@ -1560,6 +1575,12 @@ importers:
         version: 2.9.1
 
   plugins/hooks:
+    dependencies:
+      '@tauri-apps/api':
+        specifier: ^2.9.1
+        version: 2.9.1
+
+  plugins/hotkeys:
     dependencies:
       '@tauri-apps/api':
         specifier: ^2.9.1
@@ -1638,6 +1659,12 @@ importers:
         version: 2.9.1
 
   plugins/overlay:
+    dependencies:
+      '@tauri-apps/api':
+        specifier: ^2.9.1
+        version: 2.9.1
+
+  plugins/paste:
     dependencies:
       '@tauri-apps/api':
         specifier: ^2.9.1
