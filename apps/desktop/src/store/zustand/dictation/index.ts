@@ -1,6 +1,6 @@
 import { createStore } from "zustand";
 import { create as mutate } from "mutative";
-import type { StoreApi } from "zustand";
+import { WebviewWindow } from "@tauri-apps/api/webviewWindow";
 
 import {
   commands as dictationCommands,
@@ -15,7 +15,6 @@ import {
 } from "@hypr/plugin-hotkeys";
 import { commands as pasteCommands } from "@hypr/plugin-paste";
 import { commands as sfxCommands } from "@hypr/plugin-sfx";
-import { commands as windowsCommands } from "@hypr/plugin-windows";
 
 export type DictationState = {
   phase: DictationPhase;
@@ -157,7 +156,10 @@ export const createDictationStore = () => {
       );
 
       await sfxCommands.play("StartRecording");
-      await windowsCommands.showWindow("floating-bar");
+      const floatingBar = await WebviewWindow.getByLabel("floating-bar");
+      if (floatingBar) {
+        await floatingBar.show();
+      }
       await dictationCommands.startDictation({ language: null });
     },
 
@@ -193,7 +195,10 @@ export const createDictationStore = () => {
           }),
         );
 
-        await windowsCommands.hideWindow("floating-bar");
+        const floatingBar = await WebviewWindow.getByLabel("floating-bar");
+        if (floatingBar) {
+          await floatingBar.hide();
+        }
         await sfxCommands.play("StopRecording");
       }
     },
@@ -211,7 +216,10 @@ export const createDictationStore = () => {
         }),
       );
 
-      await windowsCommands.hideWindow("floating-bar");
+      const floatingBar = await WebviewWindow.getByLabel("floating-bar");
+      if (floatingBar) {
+        await floatingBar.hide();
+      }
     },
 
     lockDictation: async () => {
