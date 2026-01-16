@@ -53,6 +53,7 @@ fn make_specta_builder() -> tauri_specta::Builder<tauri::Wry> {
         ])
         .commands(tauri_specta::collect_commands![
             commands::window_show,
+            commands::window_hide,
             commands::window_destroy,
             commands::window_navigate,
             commands::window_emit_navigate,
