@@ -153,6 +153,26 @@ export const promptSchema = z.object({
   content: z.string(),
 });
 
+export const dictionaryTermTypeSchema = z.enum(["glossary", "replacement"]);
+export type DictionaryTermType = z.infer<typeof dictionaryTermTypeSchema>;
+
+export const dictionaryTermSchema = z.object({
+  user_id: z.string(),
+  term: z.string(),
+  type: dictionaryTermTypeSchema,
+  replacement: z.preprocess((val) => val ?? undefined, z.string().optional()),
+  context: z.preprocess((val) => val ?? undefined, z.string().optional()),
+});
+
+export const dictationHistorySchema = z.object({
+  user_id: z.string(),
+  created_at: z.string(),
+  raw_text: z.string(),
+  processed_text: z.string(),
+  duration_ms: z.number(),
+  target_app: z.preprocess((val) => val ?? undefined, z.string().optional()),
+});
+
 export const wordSchema = z.object({
   user_id: z.string(),
   created_at: z.string(),
@@ -243,6 +263,8 @@ export type EnhancedNote = z.infer<typeof enhancedNoteSchema>;
 export type Prompt = z.infer<typeof promptSchema>;
 export type AIProvider = z.infer<typeof aiProviderSchema>;
 export type General = z.infer<typeof generalSchema>;
+export type DictionaryTerm = z.infer<typeof dictionaryTermSchema>;
+export type DictationHistory = z.infer<typeof dictationHistorySchema>;
 
 export type SessionStorage = ToStorageType<typeof sessionSchema>;
 export type TranscriptStorage = ToStorageType<typeof transcriptSchema>;
@@ -261,6 +283,10 @@ export type MappingSessionParticipantStorage = ToStorageType<
 >;
 export type AIProviderStorage = ToStorageType<typeof aiProviderSchema>;
 export type GeneralStorage = ToStorageType<typeof generalSchema>;
+export type DictionaryTermStorage = ToStorageType<typeof dictionaryTermSchema>;
+export type DictationHistoryStorage = ToStorageType<
+  typeof dictationHistorySchema
+>;
 
 export const tableSchemaForTinybase = {
   sessions: {
@@ -394,6 +420,21 @@ export const tableSchemaForTinybase = {
     title: { type: "string" },
     content: { type: "string" },
   } as const satisfies InferTinyBaseSchema<typeof chatShortcutSchema>,
+  dictionary_terms: {
+    user_id: { type: "string" },
+    term: { type: "string" },
+    type: { type: "string" },
+    replacement: { type: "string" },
+    context: { type: "string" },
+  } as const satisfies InferTinyBaseSchema<typeof dictionaryTermSchema>,
+  dictation_history: {
+    user_id: { type: "string" },
+    created_at: { type: "string" },
+    raw_text: { type: "string" },
+    processed_text: { type: "string" },
+    duration_ms: { type: "number" },
+    target_app: { type: "string" },
+  } as const satisfies InferTinyBaseSchema<typeof dictationHistorySchema>,
 } as const satisfies TablesSchema;
 
 export const valueSchemaForTinybase = {

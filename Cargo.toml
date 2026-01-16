@@ -141,10 +141,12 @@ tauri-plugin-cli2 = { path = "plugins/cli2" }
 tauri-plugin-db2 = { path = "plugins/db2" }
 tauri-plugin-deeplink2 = { path = "plugins/deeplink2" }
 tauri-plugin-detect = { path = "plugins/detect" }
+tauri-plugin-dictation = { path = "plugins/dictation" }
 tauri-plugin-extensions = { path = "plugins/extensions" }
 tauri-plugin-fs-sync = { path = "plugins/fs-sync" }
 tauri-plugin-fs2 = { path = "plugins/fs2" }
 tauri-plugin-hooks = { path = "plugins/hooks" }
+tauri-plugin-hotkeys = { path = "plugins/hotkeys" }
 tauri-plugin-icon = { path = "plugins/icon" }
 tauri-plugin-importer = { path = "plugins/importer" }
 tauri-plugin-js = { path = "plugins/js" }
@@ -158,6 +160,7 @@ tauri-plugin-notification = { path = "plugins/notification" }
 tauri-plugin-notify = { path = "plugins/notify" }
 tauri-plugin-opener2 = { path = "plugins/opener2" }
 tauri-plugin-overlay = { path = "plugins/overlay" }
+tauri-plugin-paste = { path = "plugins/paste" }
 tauri-plugin-path2 = { path = "plugins/path2" }
 tauri-plugin-pdf = { path = "plugins/pdf" }
 tauri-plugin-permissions = { path = "plugins/permissions" }

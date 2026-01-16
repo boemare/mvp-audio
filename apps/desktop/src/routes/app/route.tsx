@@ -3,6 +3,7 @@ import { createFileRoute, Outlet, useLocation } from "@tanstack/react-router";
 import { TooltipProvider } from "@hypr/ui/components/ui/tooltip";
 
 import { useConfigSideEffects } from "../../config/use-config";
+import { DictationProvider } from "../../contexts/dictation";
 import { ListenerProvider } from "../../contexts/listener";
 import { isExtHostPath } from "../../utils/ext-host";
 
@@ -29,8 +30,10 @@ function Component() {
   return (
     <TooltipProvider>
       <ListenerProvider store={listenerStore}>
-        <Outlet />
-        <SideEffects />
+        <DictationProvider>
+          <Outlet />
+          <SideEffects />
+        </DictationProvider>
       </ListenerProvider>
     </TooltipProvider>
   );

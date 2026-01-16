@@ -35,11 +35,13 @@ tauri-plugin-db2 = { workspace = true }
 tauri-plugin-deep-link = { workspace = true }
 tauri-plugin-deeplink2 = { workspace = true }
 tauri-plugin-detect = { workspace = true }
+tauri-plugin-dictation = { workspace = true }
 tauri-plugin-dialog = { workspace = true }
 tauri-plugin-extensions = { workspace = true }
 tauri-plugin-fs-sync = { workspace = true }
 tauri-plugin-fs2 = { workspace = true }
 tauri-plugin-hooks = { workspace = true }
+tauri-plugin-hotkeys = { workspace = true }
 tauri-plugin-http = { workspace = true }
 tauri-plugin-icon = { workspace = true }
 tauri-plugin-importer = { workspace = true }
@@ -55,6 +57,7 @@ tauri-plugin-opener = { workspace = true }
 tauri-plugin-opener2 = { workspace = true }
 tauri-plugin-os = { workspace = true }
 tauri-plugin-overlay = { workspace = true }
+tauri-plugin-paste = { workspace = true }
 tauri-plugin-path2 = { workspace = true }
 tauri-plugin-pdf = { workspace = true }
 tauri-plugin-permissions = { workspace = true }

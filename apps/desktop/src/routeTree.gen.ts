@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AppRouteRouteImport } from './routes/app/route'
 import { Route as AuthCallbackRouteImport } from './routes/auth/callback'
+import { Route as AppFloatingBarRouteImport } from './routes/app/floating-bar'
 import { Route as AppExtHostRouteImport } from './routes/app/ext-host'
 import { Route as AppControlRouteImport } from './routes/app/control'
 import { Route as AppOnboardingLayoutRouteImport } from './routes/app/onboarding/_layout'
@@ -27,6 +28,11 @@ const AuthCallbackRoute = AuthCallbackRouteImport.update({
   id: '/auth/callback',
   path: '/auth/callback',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AppFloatingBarRoute = AppFloatingBarRouteImport.update({
+  id: '/floating-bar',
+  path: '/floating-bar',
+  getParentRoute: () => AppRouteRoute,
 } as any)
 const AppExtHostRoute = AppExtHostRouteImport.update({
   id: '/ext-host',
@@ -64,6 +70,7 @@ export interface FileRoutesByFullPath {
   '/app': typeof AppRouteRouteWithChildren
   '/app/control': typeof AppControlRoute
   '/app/ext-host': typeof AppExtHostRoute
+  '/app/floating-bar': typeof AppFloatingBarRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/app/main': typeof AppMainLayoutRouteWithChildren
   '/app/onboarding': typeof AppOnboardingLayoutRouteWithChildren
@@ -74,6 +81,7 @@ export interface FileRoutesByTo {
   '/app': typeof AppRouteRouteWithChildren
   '/app/control': typeof AppControlRoute
   '/app/ext-host': typeof AppExtHostRoute
+  '/app/floating-bar': typeof AppFloatingBarRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/app/main': typeof AppMainLayoutIndexRoute
   '/app/onboarding': typeof AppOnboardingLayoutIndexRoute
@@ -83,6 +91,7 @@ export interface FileRoutesById {
   '/app': typeof AppRouteRouteWithChildren
   '/app/control': typeof AppControlRoute
   '/app/ext-host': typeof AppExtHostRoute
+  '/app/floating-bar': typeof AppFloatingBarRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/app/main/_layout': typeof AppMainLayoutRouteWithChildren
   '/app/onboarding/_layout': typeof AppOnboardingLayoutRouteWithChildren
@@ -95,6 +104,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/app/control'
     | '/app/ext-host'
+    | '/app/floating-bar'
     | '/auth/callback'
     | '/app/main'
     | '/app/onboarding'
@@ -105,6 +115,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/app/control'
     | '/app/ext-host'
+    | '/app/floating-bar'
     | '/auth/callback'
     | '/app/main'
     | '/app/onboarding'
@@ -113,6 +124,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/app/control'
     | '/app/ext-host'
+    | '/app/floating-bar'
     | '/auth/callback'
     | '/app/main/_layout'
     | '/app/onboarding/_layout'
@@ -140,6 +152,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/auth/callback'
       preLoaderRoute: typeof AuthCallbackRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/app/floating-bar': {
+      id: '/app/floating-bar'
+      path: '/floating-bar'
+      fullPath: '/app/floating-bar'
+      preLoaderRoute: typeof AppFloatingBarRouteImport
+      parentRoute: typeof AppRouteRoute
     }
     '/app/ext-host': {
       id: '/app/ext-host'
@@ -212,6 +231,7 @@ const AppOnboardingLayoutRouteWithChildren =
 interface AppRouteRouteChildren {
   AppControlRoute: typeof AppControlRoute
   AppExtHostRoute: typeof AppExtHostRoute
+  AppFloatingBarRoute: typeof AppFloatingBarRoute
   AppMainLayoutRoute: typeof AppMainLayoutRouteWithChildren
   AppOnboardingLayoutRoute: typeof AppOnboardingLayoutRouteWithChildren
 }
@@ -219,6 +239,7 @@ interface AppRouteRouteChildren {
 const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppControlRoute: AppControlRoute,
   AppExtHostRoute: AppExtHostRoute,
+  AppFloatingBarRoute: AppFloatingBarRoute,
   AppMainLayoutRoute: AppMainLayoutRouteWithChildren,
   AppOnboardingLayoutRoute: AppOnboardingLayoutRouteWithChildren,
 }

@@ -9,6 +9,8 @@ pub enum AppWindow {
     Main,
     #[serde(rename = "control")]
     Control,
+    #[serde(rename = "floating-bar")]
+    FloatingBar,
 }
 
 impl std::fmt::Display for AppWindow {
@@ -17,6 +19,7 @@ impl std::fmt::Display for AppWindow {
             Self::Onboarding => write!(f, "onboarding"),
             Self::Main => write!(f, "main"),
             Self::Control => write!(f, "control"),
+            Self::FloatingBar => write!(f, "floating-bar"),
         }
     }
 }
@@ -29,6 +32,7 @@ impl std::str::FromStr for AppWindow {
             "onboarding" => return Ok(Self::Onboarding),
             "main" => return Ok(Self::Main),
             "control" => return Ok(Self::Control),
+            "floating-bar" => return Ok(Self::FloatingBar),
             _ => {}
         }
 
@@ -99,6 +103,7 @@ impl WindowImpl for AppWindow {
             Self::Onboarding => "Onboarding".into(),
             Self::Main => "Main".into(),
             Self::Control => "Control".into(),
+            Self::FloatingBar => "Dictation".into(),
         }
     }
 
@@ -144,6 +149,21 @@ impl WindowImpl for AppWindow {
                 window.set_size(LogicalSize::new(1.0, 1.0))?;
                 std::thread::sleep(std::time::Duration::from_millis(10));
                 window.set_size(collapsed_size)?;
+                window
+            }
+            Self::FloatingBar => {
+                let window = self
+                    .window_builder(app, "/app/floating-bar")
+                    .transparent(true)
+                    .resizable(false)
+                    .always_on_top(true)
+                    .skip_taskbar(true)
+                    .accept_first_mouse(true)
+                    .visible_on_all_workspaces(true)
+                    .decorations(false)
+                    .build()?;
+
+                window.set_size(LogicalSize::new(100.0, 40.0))?;
                 window
             }
         };
